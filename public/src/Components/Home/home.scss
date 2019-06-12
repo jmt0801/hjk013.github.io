@@ -1,0 +1,331 @@
+@import url("https://fonts.googleapis.com/css?family=Cardo");
+@import url("https://fonts.googleapis.com/css?family=Exo+2");
+@import url("https://fonts.googleapis.com/css?family=Arvo:700");
+
+@import url("https://use.typekit.net/zvz3aox.css");
+
+//Colors:
+
+$color-darker-blue: #24305e;
+$color-lighter-tan: #bfa694;
+$color-darker-brown: #7f4707;
+$color-lighter-blue: #374785;
+$color-orange-brown: #d97b59;
+$color-white-tan: #f8f1e9;
+$color-white-smoke-bg: #f9f9f7;
+$color-mustard-yellow: #f8e9a1;
+$color-orange-red: #f76c6c;
+$color-baby-blue: #a8d0e6;
+$color-bg-grey: #f6f5f3;
+$color-font-grey: #3d3d3f;
+$color-whiteish: #f9f8fd;
+
+//<----------breakpoint mixins---------->
+$tablet-width: 768px;
+$laptop-width: 1024px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$laptop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: #{$laptop-width}) {
+    @content;
+  }
+}
+//<-------------------->
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// #page-wrap {
+//   text-align: center;
+//   overflow: auto;
+// }
+
+#home {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+//<--------------------Default MobileView-------------------------->
+.home-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background: url(../../../dist/images/main_bg_200.jpg) no-repeat center center;
+  background-size: cover;
+
+  //media queries
+  @include tablet {
+    background: url(../../../dist/images/main_bg_300.jpg) no-repeat center
+      center;
+    background-size: cover;
+  }
+
+  @include laptop {
+    background: url(../../../dist/images/main_bg_400.jpg);
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+// Heading / Text
+.text-box {
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @include tablet {
+    overflow: visible;
+  }
+
+  @include laptop {
+    overflow: visible;
+    scroll-behavior: smooth;
+  }
+}
+
+.home-h1:hover {
+  color: $color-mustard-yellow;
+}
+
+.home-h1:hover::after {
+  transform: translate3d(100%, 0, 0);
+}
+
+.home-h1:hover::before {
+  width: 100%;
+}
+
+.home-h1 {
+  outline: none;
+  text-decoration: none;
+  position: relative;
+  line-height: 1em;
+  display: inline-block;
+  color: #3d3d3f;
+  font-size: 50px;
+  font-size: 11vw;
+  font-family: "Arvo", serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+  margin-top: 30%;
+  margin-bottom: 5%;
+
+  //media queries
+
+  @include tablet {
+    font-size: 70px;
+    font-size: 7.5vw;
+    text-align: right;
+    margin: 0;
+  }
+
+  @include laptop {
+    font-size: 110px;
+    font-size: 7.5vw;
+    margin: 0;
+    text-align: right;
+  }
+}
+
+.home-h1::after {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 100%;
+  top: 50%;
+  margin-top: -8px;
+  right: 0;
+  background: $color-baby-blue;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.4s;
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+
+  @include tablet {
+    background: $color-bg-grey;
+  }
+
+  @include laptop {
+    background: $color-bg-grey;
+  }
+}
+
+.home-h1::before {
+  content: attr(data-letters);
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  color: #424242;
+  white-space: nowrap;
+  width: 0%;
+  transition: width 0.4s 0.3s;
+}
+
+.home-h2 {
+  display: block;
+  color: $color-orange-red;
+  // mix-blend-mode: difference;
+  font-size: 28px;
+  font-size: 5.86vw;
+  font-family: "Exo 2", sans-serif;
+  letter-spacing: 0.09em;
+  line-height: 1em;
+  text-transform: uppercase;
+  text-align: left;
+  // position: relative;
+  // top: -2em;
+  margin-bottom: 25%;
+
+  //media queries
+
+  @include tablet {
+    font-size: 30px;
+    font-size: 3.7vw;
+    margin-top: 2.5%;
+    text-align: right;
+  }
+
+  @include laptop {
+    font-size: 50px;
+    font-size: 3.7vw;
+    margin-top: 3%;
+    text-align: right;
+  }
+}
+
+// Text Animation
+
+//Buttons
+
+.social-btns .btn,
+.social-btns .btn:before,
+.social-btns .btn .fab {
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+}
+
+.social-btns .btn:before {
+  top: 90%;
+  left: -110%;
+}
+.social-btns .btn .fab {
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+}
+.social-btns .btn.linkedin:before {
+  background-color: #0077b5;
+}
+.social-btns .btn.linkedin .fab {
+  color: #0077b5;
+}
+
+.social-btns .btn.github:before {
+  background-color: #6e5494;
+}
+.social-btns .btn.github .fab {
+  color: #6e5494;
+}
+
+.social-btns .btn.resume:before {
+  background-color: #ff0000;
+}
+.social-btns .btn.resume .fab {
+  color: #ff0000;
+}
+.social-btns .btn:focus:before,
+.social-btns .btn:hover:before {
+  top: -10%;
+  left: -10%;
+}
+.social-btns .btn:focus .fab,
+.social-btns .btn:hover .fab {
+  color: #f9f8fd;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.social-btns {
+  height: auto;
+  margin: auto;
+  font-size: 0;
+  text-align: center;
+  display: flex;
+
+  //media queries
+
+  @include tablet {
+    top: 110px;
+  }
+
+  @include laptop {
+    top: 200px;
+    top: 4vh;
+  }
+}
+.social-btns .btn {
+  display: inline-block;
+  background-color: #f9f8fd;
+  width: 62px;
+  height: 62px;
+  line-height: 62px;
+  margin: 0 8px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  opacity: 0.99;
+
+  //media queries
+
+  @include tablet {
+    width: 85px;
+    width: 7vw;
+    height: 85px;
+    height: 7vw;
+    line-height: 85px;
+    line-height: 7vw;
+    margin: 0 10px;
+  }
+
+  @include laptop {
+    width: 120px;
+    width: 7vw;
+    height: 120px;
+    height: 7vw;
+    line-height: 120px;
+    line-height: 7vw;
+    margin: 0 15px;
+  }
+}
+.social-btns .btn:before {
+  content: "";
+  width: 120%;
+  height: 120%;
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.social-btns .btn .fab {
+  font-size: 38px;
+  vertical-align: middle;
+}
